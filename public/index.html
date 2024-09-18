@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Tracker</title>
+    <link rel="stylesheet" href="dist/output.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-200 ">
+
+    <h1 class="text-[2rem] text-center font-semibold mt-6">Expense Tracker</h1>
+    <main class="lg:grid lg:grid-cols-2 flex flex-col max-w-[800px] w-[95%] m-auto mt-20 gap-20 ">
+        <section class="flex flex-col shadow-[#8a9dcf] shadow-xl bg-white">
+            <header class="bg-gray-800 text-white px-6 font-bold text-[1rem] py-2">
+                <h2>+ Add New Expense</h2>
+            </header>
+            <footer class="p-6 text-[0.8rem] ">
+                <form action="" class="[&>div>input]:border-[1px] [&>div>input]:border-gray-200 [&>div>input]:rounded-md [&>div>input]:w-[100%] [&>div]:flex [&>div]:gap-2 flex flex-col gap-6 [&>div>input]:py-1 [&>div>input]:px-2 [&>div]:place-items-center">
+                    <div>
+                        <label for="date">Date:</label>
+                        <input required type="date" name="date" id="date">
+                    </div>
+                    <div>
+                        <label for="description">Description:</label>
+                        <input required type="text" name="description" id="description">
+                    </div>
+                    <div>
+                        <label for="amount">Amount:</label>
+                        <input required type="number" name="amount" id="amount">
+                    </div>
+                    <button id="addBtn" class="w-full text-center bg-cyan-500 hover:bg-green-400 transition-all hover:-translate-y-[1px] duration-200 py-1 px-2 rounded-md text-white">Add Expense</button>
+                </form>
+
+            </footer>
+        </section>
+        <section class="flex flex-col shadow-[#8a9dcf] shadow-xl bg-white h-fit">
+            <header class="flex place-items-center justify-center gap-2 bg-gray-800 text-white px-6 font-bold text-[1rem] py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
+                    <path d="M9 15V4H11V15H9Z" fill="#ffffff"/>
+                    <path d="M5 15V7H7V15H5Z" fill="#ffffff"/>
+                    <path d="M1 10V15H3V10H1Z" fill="#ffffff"/>
+                    </svg>
+                <h2>Expense Summary</h2>
+            </header>
+            <footer class="p-6 text-[0.9rem]">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="border-[1px] border-gray-300 rounded-md p-2 font-bold text-gray-600">
+                        <p>Total Expense</p>
+                        <span id="totalExpense" class="text-blue-500 text-[1.3rem]">$0.00</span>
+                    </div>
+                    <div class="border-[1px] border-gray-300 rounded-md p-2 font-bold text-gray-600"> 
+                        <p>Average Expense</p>
+                        <span id="expenseAverage" class="text-green-500 text-[1.3rem]">$0.00</span>
+                    </div>
+                    <div class="border-[1px] border-gray-300 rounded-md p-2 font-bold text-gray-600"> 
+                        <p>Highest Expense</p>
+                        <span id="highestExpense" class="text-red-500 text-[1.3rem]">$0.00</span>
+                    </div>
+                    <div class="border-[1px] border-gray-300 rounded-md p-2 font-bold text-gray-600"> 
+                        <p>Total Entries</p>
+                        <span id="totalEntry" class="text-gray-500 text-[1.3rem]">0</span>
+                    </div>
+                </div>
+                
+            </footer>
+        </section>
+        <section class="mb-20 col-span-2  flex flex-col shadow-[#8a9dcf] shadow-xl bg-white min-h-[100px]">
+            <header class="flex place-items-center justify-center  gap-2 bg-gray-800 text-center text-white px-6 font-bold text-[1rem] py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 1H1V3H3V1Z" fill="#ffffff"/>
+                    <path d="M3 5H1V7H3V5Z" fill="#ffffff"/>
+                    <path d="M1 9H3V11H1V9Z" fill="#ffffff"/>
+                    <path d="M3 13H1V15H3V13Z" fill="#ffffff"/>
+                    <path d="M15 1H5V3H15V1Z" fill="#ffffff"/>
+                    <path d="M15 5H5V7H15V5Z" fill="#ffffff"/>
+                    <path d="M5 9H15V11H5V9Z" fill="#ffffff"/>
+                    <path d="M15 13H5V15H15V13Z" fill="#ffffff"/>
+                    </svg>
+                <h2>Expense List</h2>
+            </header>
+            <footer class="p-6 text-[0.9rem]">
+
+                <table border="1" class="w-full">
+                    <thead>
+                      <tr class="text-left border-b-[1px] border-b-gray-500">
+                        <th class="">Date</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="list" class="">
+                      
+                    </tbody>
+                  </table>
+                
+            </footer>
+        </section>
+    </main>
+
+    <div id="overlay" class="hidden fixed top-0 h-[100vh] bg-[#11111149] w-[100vw]"></div>
+    <div id="modal" class="hidden fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] justify-center text-[10rem] bg-black">
+        <section class="flex flex-col shadow-[#8a9dcf] shadow-xl bg-white">
+            <header class="bg-gray-800 text-white px-6 font-bold text-[1rem] py-2">
+                <h2>Update Expense</h2>
+            </header>
+            <footer class="p-6 text-[0.8rem] [&>div>input]:border-[1px] [&>div>input]:border-gray-200 [&>div>input]:rounded-md [&>div>input]:w-[100%] [&>div]:flex [&>div]:gap-2 flex flex-col gap-6 [&>div>input]:py-1 [&>div>input]:px-2 [&>div]:place-items-center">
+                <div>
+                    <label for="dateUpdate">Date:</label>
+                    <input type="date" name="date" id="dateUpdate">
+                </div>
+                <div>
+                    <label for="desUpdate">Description:</label>
+                    <input type="text" name="description" id="desUpdate">
+                </div>
+                <div>
+                    <label for="amountUpdate">Amount:</label>
+                    <input type="number" name="amount" id="amountUpdate">
+                </div>
+                <button id="updateBtn" class="w-full text-center bg-cyan-500 hover:bg-green-400 transition-all hover:-translate-y-[1px] duration-200 py-1 px-2 rounded-md text-white">Update</button>
+            </footer>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

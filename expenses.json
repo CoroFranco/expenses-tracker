@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "date": "2024-09-11 01-53-20",
+        "description": "lunch",
+        "amount": "20"
+    },
+    {
+        "id": 1,
+        "date": "2024-09-11 01-53-23",
+        "description": "dinner",
+        "amount": "50"
+    },
+    {
+        "id": 2,
+        "date": "2024-09-11 01:53:51",
+        "description": "dinner",
+        "amount": "50"
+    },
+    {
+        "id": 3,
+        "date": "2024-09-11 02:11:51",
+        "description": "dinner",
+        "amount": "50"
+    }
+]
